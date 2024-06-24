@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用渲染函数 | HiDoc</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.0e123b58.css" as="style"><link rel="preload" href="/assets/js/app.fe03ab5e.js" as="script"><link rel="preload" href="/assets/js/2.1f5ff3fb.js" as="script"><link rel="preload" href="/assets/js/9.32319f64.js" as="script"><link rel="prefetch" href="/assets/js/10.9768c84c.js"><link rel="prefetch" href="/assets/js/11.a026e0a2.js"><link rel="prefetch" href="/assets/js/12.dabf57c8.js"><link rel="prefetch" href="/assets/js/13.c77aa622.js"><link rel="prefetch" href="/assets/js/14.280e0fc5.js"><link rel="prefetch" href="/assets/js/15.0e1e201b.js"><link rel="prefetch" href="/assets/js/16.a396a055.js"><link rel="prefetch" href="/assets/js/17.b7d94a0d.js"><link rel="prefetch" href="/assets/js/18.1fcf8e89.js"><link rel="prefetch" href="/assets/js/19.70c96dc8.js"><link rel="prefetch" href="/assets/js/20.57a7fb21.js"><link rel="prefetch" href="/assets/js/21.b4eb4bc0.js"><link rel="prefetch" href="/assets/js/22.35179f79.js"><link rel="prefetch" href="/assets/js/23.576e6489.js"><link rel="prefetch" href="/assets/js/24.9dd3f0ff.js"><link rel="prefetch" href="/assets/js/25.0cf8dc8f.js"><link rel="prefetch" href="/assets/js/26.afc031d5.js"><link rel="prefetch" href="/assets/js/27.429d522c.js"><link rel="prefetch" href="/assets/js/28.6486f2ff.js"><link rel="prefetch" href="/assets/js/29.86dde356.js"><link rel="prefetch" href="/assets/js/3.c3ea9630.js"><link rel="prefetch" href="/assets/js/30.db155db7.js"><link rel="prefetch" href="/assets/js/31.000152f7.js"><link rel="prefetch" href="/assets/js/32.e62c80dc.js"><link rel="prefetch" href="/assets/js/33.b844c11a.js"><link rel="prefetch" href="/assets/js/34.6835e5f5.js"><link rel="prefetch" href="/assets/js/35.6327d166.js"><link rel="prefetch" href="/assets/js/36.aed4243f.js"><link rel="prefetch" href="/assets/js/37.643994a2.js"><link rel="prefetch" href="/assets/js/38.e008e751.js"><link rel="prefetch" href="/assets/js/39.e28e6619.js"><link rel="prefetch" href="/assets/js/4.d6136eb3.js"><link rel="prefetch" href="/assets/js/40.19f07b7b.js"><link rel="prefetch" href="/assets/js/41.30210dbb.js"><link rel="prefetch" href="/assets/js/5.df510ea4.js"><link rel="prefetch" href="/assets/js/6.50a4a862.js"><link rel="prefetch" href="/assets/js/7.a4dc71d5.js"><link rel="prefetch" href="/assets/js/8.05521ae8.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.0e123b58.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">HiDoc</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><a href="/vue3-deep-dive/intro" class="sidebar-heading clickable open"><span>Vue3 Deep Dive</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/vue3-deep-dive/intro.html" class="sidebar-link">介绍</a></li><li><a href="/vue3-deep-dive/rendering-mechanism.html" class="sidebar-link">渲染机制</a></li><li><a href="/vue3-deep-dive/use-render-function.html" aria-current="page" class="active sidebar-link">使用渲染函数</a></li><li><a href="/vue3-deep-dive/compiler-and-renderer-api.html" class="sidebar-link">编译器和渲染器 API</a></li><li><a href="/vue3-deep-dive/creating-a-mount-function.html" class="sidebar-link">创建 Mount 函数</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="使用渲染函数"><a href="#使用渲染函数" class="header-anchor">#</a> 使用渲染函数</h1> <p>让我们做一个高层次的介绍，看看渲染函数在 Vue 中是什么样子。</p> <p>假设我们有一个 Vue 组件。传统上，我们有一个 template 选项，但是为了重用渲染函数，我们可以用一个名为 render 的函数来代替它。</p> <p>在 Vue 2，我们会通过参数得到这个称为 h 的东西，这是 hyperscript 的缩写。但在这里，我们只是示范一下我们如何在 Vue 3 中使用它。我们会从 vue 导入 h。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们可以用它来...比如返回<code>h(div)</code>。所以这是等效的，跟模板中的普通 div 一样。它返回 div 的 JavaScript 对象表示。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>渲染器接收参数，然后它实际上进行 dom 调用将其带入浏览器，所以我们可以给这个虚拟节点一些 props 属性：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            id<span class="token operator">:</span> <span class="token string">'hello'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在最终的 dom 里将得到类似于<code>&lt;div id=&quot;hello&quot;&gt;&lt;/div&gt;</code>的东西。</p> <p>然后，你可以给它更多的嵌套子元素。这样你就可以写：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            id<span class="token operator">:</span> <span class="token string">'hello'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">,</span> <span class="token string">'world'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>所以这会产生类似这样的结构：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>hello<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>world<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>现在，我们知道如何生成静态结构。</p> <p>但是当人们第一次使用 render 函数会问：“我该怎么写 v-if 或者 v-for？”</p> <p>在 render 函数中，我们没有，像 v-if 或者类似的东西。请直接使用 JavaScript。</p> <p>和 <code>v-if=&quot;ok&quot;</code>等价的是，我们可以用一个三元表达式，像这样...</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// v-if=&quot;ok&quot;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>ok
+            <span class="token operator">?</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> <span class="token string">'hello'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">,</span> <span class="token string">'world'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token operator">:</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">,</span> <span class="token string">'other branch'</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>如果你想做v-else-if</p> <p>你可以这样使用：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> nodeToReturn
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>ok<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            nodeToReturn <span class="token operator">=</span> <span class="token operator">...</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token operator">...</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token operator">...</span>
+        <span class="token punctuation">}</span>
+        <span class="token operator">...</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>那 v-for...类似的...在 JavaScript 中，在 render 函数中它看起来更像这样...</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// v-for=&quot;item in list&quot;</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>list<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> key<span class="token operator">:</span> item<span class="token punctuation">.</span>id <span class="token punctuation">}</span><span class="token punctuation">,</span> item<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这是渲染函数中的渲染列表。</p> <p>还有一件事你要处理。实际上，在渲染函数中，您可能会总是要处理的...是插槽。</p> <p>这是因为通常，当你写一个重标记的组件，或者我更喜欢称之为特性组件。它与你的应用程序的外观有关，布局结构，实际的标记语言，显示给用户的。对于那些类型的组件，我更喜欢始终使用模板。</p> <p>只有在我必须使用渲染函数的时候。比如，我在写一些功能型的组件，一个有时会期望获取一些插槽内容，将其打包或者以某种方式操纵他们，这是最常见的情况，我们会使用渲染函数。</p> <p>为了应付在某些渲染函数中的插槽，你通常会把这样写...</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$slots
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>在Vue 3里，所有默认插槽将被暴露在这个<code>this.$slot.default</code>并且总是函数。但是如果什么都没有提供、这将返回 undefined，所以你得先检查一下它的存在，然后你才能调用它。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>$slots<span class="token punctuation">.</span>default <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$slots<span class="token punctuation">.</span><span class="token function">default</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这会给你插槽的内容，它将是一个 vnode 的数组。所以如果它存在，它将永远是一个数组。</p> <p>现在，如果你熟悉的话，有了作用域槽，我们可以将 props 传递给作用域槽，所以把数据传递到作用域槽，只是通过传递一个参数到这个函数调用中，所以这真的很有用。因为我们想确定这总是一个数组，所以通常会这样写：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> slot <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$slots<span class="token punctuation">.</span>default
+        	<span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$slots<span class="token punctuation">.</span><span class="token function">default</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+        	<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>如果你愿意的话，我们可以直接返回这个插槽。或者你可以，因为这是一个数组，你可以直接放在 children 身上，另一个元素的位置。你想怎么写就怎么写。</p> <p>你可以用插槽做一件很强大的事：在 render 函数中，以某种方式操纵插槽。你可以检查它们，因为这真的只是一个 JavaScript 对象数组。你也可以在这个过程中加工它们。</p> <p>举个例子：</p> <p>假设我们有一个堆栈组件，我在一些用户界面库中见过这种情况。</p> <p>其中堆栈组件（Stack）是布局组件。你可以这样使用它，可以传递很多东西，也可以有嵌套的堆栈。</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Stack</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>4<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Stack</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>4<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Stack</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Stack</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>渲染结果是它将包裹每个子对象，直接的孩子给了它一些 margin。当你像这样嵌套，你得到了嵌套的边距布局。有点像 HTML 中 UL 和 OL 的默认样式。</p> <p>因此想要的渲染输出会是...</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>stack<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>mt-4<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>mt-4<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>stack<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>mt-4<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>事实上，每个都会被包起来的。mt-4 是一个功能类，它将给它一些边距，然后你会有另一个 mt-4，又包了另一个 stack。这个列表也是一样的。</p> <p>好吧，所以它只是制造了一堆包裹元素，唯一的目的是给予一些额外的填充或边距用于布局。</p> <p>那么，我们怎么做，比如说，在里面使用一个普通的基于模板的语法？因为你想要的就是这些在同一个插槽内。它们都是默认插槽。</p> <p><img src="/assets/img/16346369837163.3a6afabf.png" alt="img"></p> <p>对于模板语法，只有你能做的就是渲染这个部分，一炮而过。</p> <p>所以在模板里面，没有机会程序化的遍历插槽内的每个项目，然后把它们变成别的东西。但是你可以用渲染函数来实现。所以，如果我们要实现这样的堆栈组件，我们可以像这样：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> h <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token keyword">const</span> Stack <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> slot <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$slots<span class="token punctuation">.</span>default
+        	<span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$slots<span class="token punctuation">.</span><span class="token function">default</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token operator">...</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+        	<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token keyword">class</span><span class="token operator">:</span> <span class="token string">'stack'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> slot<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">child</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token keyword">class</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">mt-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>$props<span class="token punctuation">.</span>size<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+                child
+            <span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们把孩子放在里面，所以我们用的是一个<code>slot.map</code>生成新的 vnode 列表，原来的子插槽被包装在里面。</p> <p>所以我认为这是一个很好的例子，当你创作这些底层的公用设施组件，有时你真的会遇到麻烦，这时渲染函数更有效。但话说回来，也需要了解每种方法的利弊。我们希望这样过一遍，所有这些都是为了让你更好地理解，在什么情况下应该使用模板或使用渲染函数。</p> <p>总的来说，从我的经验来看，这种情况在您创作可重用的功能组件时更常见。</p> <p>在日常开发中，你主要是在编写特性组件。模板通常是有效的方式。</p> <p>模板的好处是更简单，优化通过编译器优化，尤其当你有很多标记的时候。它的另一个好处是它更容易让设计师接管组件，并用 CSS 设计样式。</p> <p>因此，Vue 提供了这两个选项，当情况出现的时候，以便您可以选择合适的工具。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vue3-deep-dive/rendering-mechanism.html" class="prev">
+        渲染机制
+      </a></span> <span class="next"><a href="/vue3-deep-dive/compiler-and-renderer-api.html">
+        编译器和渲染器 API
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.fe03ab5e.js" defer></script><script src="/assets/js/2.1f5ff3fb.js" defer></script><script src="/assets/js/9.32319f64.js" defer></script>
+  </body>
+</html>

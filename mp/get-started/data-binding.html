@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>数据绑定与 WXML 模板 | HiDoc</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.0e123b58.css" as="style"><link rel="preload" href="/assets/js/app.fe03ab5e.js" as="script"><link rel="preload" href="/assets/js/2.1f5ff3fb.js" as="script"><link rel="preload" href="/assets/js/30.db155db7.js" as="script"><link rel="prefetch" href="/assets/js/10.9768c84c.js"><link rel="prefetch" href="/assets/js/11.a026e0a2.js"><link rel="prefetch" href="/assets/js/12.dabf57c8.js"><link rel="prefetch" href="/assets/js/13.c77aa622.js"><link rel="prefetch" href="/assets/js/14.280e0fc5.js"><link rel="prefetch" href="/assets/js/15.0e1e201b.js"><link rel="prefetch" href="/assets/js/16.a396a055.js"><link rel="prefetch" href="/assets/js/17.b7d94a0d.js"><link rel="prefetch" href="/assets/js/18.1fcf8e89.js"><link rel="prefetch" href="/assets/js/19.70c96dc8.js"><link rel="prefetch" href="/assets/js/20.57a7fb21.js"><link rel="prefetch" href="/assets/js/21.b4eb4bc0.js"><link rel="prefetch" href="/assets/js/22.35179f79.js"><link rel="prefetch" href="/assets/js/23.576e6489.js"><link rel="prefetch" href="/assets/js/24.9dd3f0ff.js"><link rel="prefetch" href="/assets/js/25.0cf8dc8f.js"><link rel="prefetch" href="/assets/js/26.afc031d5.js"><link rel="prefetch" href="/assets/js/27.429d522c.js"><link rel="prefetch" href="/assets/js/28.6486f2ff.js"><link rel="prefetch" href="/assets/js/29.86dde356.js"><link rel="prefetch" href="/assets/js/3.c3ea9630.js"><link rel="prefetch" href="/assets/js/31.000152f7.js"><link rel="prefetch" href="/assets/js/32.e62c80dc.js"><link rel="prefetch" href="/assets/js/33.b844c11a.js"><link rel="prefetch" href="/assets/js/34.6835e5f5.js"><link rel="prefetch" href="/assets/js/35.6327d166.js"><link rel="prefetch" href="/assets/js/36.aed4243f.js"><link rel="prefetch" href="/assets/js/37.643994a2.js"><link rel="prefetch" href="/assets/js/38.e008e751.js"><link rel="prefetch" href="/assets/js/39.e28e6619.js"><link rel="prefetch" href="/assets/js/4.d6136eb3.js"><link rel="prefetch" href="/assets/js/40.19f07b7b.js"><link rel="prefetch" href="/assets/js/41.30210dbb.js"><link rel="prefetch" href="/assets/js/5.df510ea4.js"><link rel="prefetch" href="/assets/js/6.50a4a862.js"><link rel="prefetch" href="/assets/js/7.a4dc71d5.js"><link rel="prefetch" href="/assets/js/8.05521ae8.js"><link rel="prefetch" href="/assets/js/9.32319f64.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.0e123b58.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">HiDoc</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><a href="/mp/get-started/environment-config" class="sidebar-heading clickable open"><span>小程序基础</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/mp/get-started/environment-config.html" class="sidebar-link">开始</a></li><li><a href="/mp/get-started/program-structure.html" class="sidebar-link">小程序代码构成</a></li><li><a href="/mp/get-started/miniprogram-framework.html" class="sidebar-link">小程序架构</a></li><li><a href="/mp/get-started/app-instance.html" class="sidebar-link">App 实例</a></li><li><a href="/mp/get-started/page.html" class="sidebar-link">Page 注册与管理</a></li><li><a href="/mp/get-started/data-binding.html" aria-current="page" class="active sidebar-link">数据绑定与 WXML 模板</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#简单绑定" class="sidebar-link">简单绑定</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#内容" class="sidebar-link">内容</a></li><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#组件属性-需要在双引号之内" class="sidebar-link">组件属性(需要在双引号之内)</a></li><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#控制属性-需要在双引号之内" class="sidebar-link">控制属性(需要在双引号之内)</a></li><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#关键字-需要在双引号之内" class="sidebar-link">关键字(需要在双引号之内)</a></li></ul></li><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#运算" class="sidebar-link">运算</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#三元运算" class="sidebar-link">三元运算</a></li><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#算数运算" class="sidebar-link">算数运算</a></li><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#逻辑判断" class="sidebar-link">逻辑判断</a></li><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#字符串运算" class="sidebar-link">字符串运算</a></li><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#数据路径运算" class="sidebar-link">数据路径运算</a></li></ul></li><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#组合" class="sidebar-link">组合</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#数组" class="sidebar-link">数组</a></li><li class="sidebar-sub-header"><a href="/mp/get-started/data-binding.html#对象" class="sidebar-link">对象</a></li></ul></li></ul></li><li><a href="/mp/get-started/conditional-render.html" class="sidebar-link">条件渲染</a></li><li><a href="/mp/get-started/list-render.html" class="sidebar-link">列表渲染</a></li><li><a href="/mp/get-started/style-wxss.html" class="sidebar-link">样式与 WXSS</a></li><li><a href="/mp/get-started/event-binding.html" class="sidebar-link">事件处理</a></li><li><a href="/mp/get-started/form-binding.html" class="sidebar-link">表单处理与双向绑定</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/mp/component-programming/summary" class="sidebar-heading clickable"><span>组件化编程</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/mp/component-programming/summary.html" class="sidebar-link">概览</a></li><li><a href="/mp/component-programming/template-style.html" class="sidebar-link">组件模板和样式</a></li><li><a href="/mp/component-programming/constructor.html" class="sidebar-link">Component 构造器</a></li><li><a href="/mp/component-programming/communicate-and-events.html" class="sidebar-link">组件间通信与事件</a></li><li><a href="/mp/component-programming/lifecycle.html" class="sidebar-link">组件生命周期</a></li><li><a href="/mp/component-programming/mixins.html" class="sidebar-link">共享代码 (Behavior)</a></li><li><a href="/mp/component-programming/relations-component.html" class="sidebar-link">关联组件</a></li><li><a href="/mp/component-programming/data-observer.html" class="sidebar-link">数据监听</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/mp/api-ability/api" class="sidebar-heading clickable"><span>API 能力</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/mp/api-ability/api.html" class="sidebar-link">API 参考</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="数据绑定与-wxml-模板"><a href="#数据绑定与-wxml-模板" class="header-anchor">#</a> 数据绑定与 WXML 模板</h1> <p>WXML 中的动态数据均来自对应 Page 的 data。</p> <h2 id="简单绑定"><a href="#简单绑定" class="header-anchor">#</a> 简单绑定</h2> <p>数据绑定使用 Mustache 语法（双大括号）将变量包起来，可以作用于：</p> <h3 id="内容"><a href="#内容" class="header-anchor">#</a> 内容</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">&gt;</span></span> {{ message }} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+Page({
+  data: {
+    message: 'Hello MINA!'
+  }
+})
+</code></pre></div><h3 id="组件属性-需要在双引号之内"><a href="#组件属性-需要在双引号之内" class="header-anchor">#</a> 组件属性(需要在双引号之内)</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>item-{{id}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+Page({
+  data: {
+    id: 0
+  }
+})
+</code></pre></div><h3 id="控制属性-需要在双引号之内"><a href="#控制属性-需要在双引号之内" class="header-anchor">#</a> 控制属性(需要在双引号之内)</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name"><span class="token namespace">wx:</span>if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{condition}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+Page({
+  data: {
+    condition: true
+  }
+})
+</code></pre></div><h3 id="关键字-需要在双引号之内"><a href="#关键字-需要在双引号之内" class="header-anchor">#</a> 关键字(需要在双引号之内)</h3> <p><code>true</code>：boolean 类型的 true，代表真值。</p> <p><code>false</code>： boolean 类型的 false，代表假值。</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>checkbox</span> <span class="token attr-name">checked</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{false}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>checkbox</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p><em><strong>特别注意：不要直接写 <code>checked=&quot;false&quot;</code>，其计算结果是一个字符串，转成 boolean 类型后代表真值。</strong></em></p> <h2 id="运算"><a href="#运算" class="header-anchor">#</a> 运算</h2> <p>可以在 <code>{{}}</code> 内进行简单的运算，支持的有如下几种方式：</p> <h3 id="三元运算"><a href="#三元运算" class="header-anchor">#</a> 三元运算</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{flag ? true : false}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> Hidden <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h3 id="算数运算"><a href="#算数运算" class="header-anchor">#</a> 算数运算</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">&gt;</span></span> {{a + b}} + {{c}} + d <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+Page({
+  data: {
+    a: 1,
+    b: 2,
+    c: 3
+  }
+})
+</code></pre></div><p>view中的内容为 <code>3 + 3 + d</code>。</p> <h3 id="逻辑判断"><a href="#逻辑判断" class="header-anchor">#</a> 逻辑判断</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name"><span class="token namespace">wx:</span>if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{length &gt; 5}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h3 id="字符串运算"><a href="#字符串运算" class="header-anchor">#</a> 字符串运算</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">&gt;</span></span>{{&quot;hello&quot; + name}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+Page({
+  data:{
+    name: 'MINA'
+  }
+})
+</code></pre></div><h3 id="数据路径运算"><a href="#数据路径运算" class="header-anchor">#</a> 数据路径运算</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">&gt;</span></span>{{object.key}} {{array[0]}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+Page({
+  data: {
+    object: {
+      key: 'Hello '
+    },
+    array: ['MINA']
+  }
+})
+</code></pre></div><h2 id="组合"><a href="#组合" class="header-anchor">#</a> 组合</h2> <p>也可以在 Mustache 内直接进行组合，构成新的对象或者数组。</p> <h3 id="数组"><a href="#数组" class="header-anchor">#</a> 数组</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name"><span class="token namespace">wx:</span>for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{[zero, 1, 2, 3, 4]}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span> {{item}} <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+Page({
+  data: {
+    zero: 0
+  }
+})
+</code></pre></div><p>最终组合成数组<code>[0, 1, 2, 3, 4]</code>。</p> <h3 id="对象"><a href="#对象" class="header-anchor">#</a> 对象</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">is</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>objectCombine<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{for: a, bar: b}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+Page({
+  data: {
+    a: 1,
+    b: 2
+  }
+})
+</code></pre></div><p>最终组合成的对象是 <code>{for: 1, bar: 2}</code></p> <p>也可以用扩展运算符 <code>...</code> 来将一个对象展开</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">is</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>objectCombine<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{...obj1, ...obj2, e: 5}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+Page({
+  data: {
+    obj1: {
+      a: 1,
+      b: 2
+    },
+    obj2: {
+      c: 3,
+      d: 4
+    }
+  }
+})
+</code></pre></div><p>最终组合成的对象是 <code>{a: 1, b: 2, c: 3, d: 4, e: 5}</code>。</p> <p>如果对象的 key 和 value 相同，也可以间接地表达。</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">is</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>objectCombine<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{foo, bar}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+Page({
+  data: {
+    foo: 'my-foo',
+    bar: 'my-bar'
+  }
+})
+</code></pre></div><p>最终组合成的对象是 <code>{foo: 'my-foo', bar:'my-bar'}</code>。</p> <p><strong>注意</strong>：上述方式可以随意组合，但是如有存在变量名相同的情况，后边的会覆盖前面，如：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">is</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>objectCombine<span class="token punctuation">&quot;</span></span> <span class="token attr-name">data</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{...obj1, ...obj2, a, c: 6}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+Page({
+  data: {
+    obj1: {
+      a: 1,
+      b: 2
+    },
+    obj2: {
+      b: 3,
+      c: 4
+    },
+    a: 5
+  }
+})
+</code></pre></div><p>最终组合成的对象是 <code>{a: 5, b: 3, c: 6}</code>。</p> <p><strong>注意：</strong> 花括号和引号之间如果有空格，将最终被解析成为字符串</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name"><span class="token namespace">wx:</span>for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{[1,2,3]}} <span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  {{item}}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>等同于</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name"><span class="token namespace">wx:</span>for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>{{[1,2,3] + <span class="token punctuation">'</span> <span class="token punctuation">'</span>}}<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  {{item}}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/mp/get-started/page.html" class="prev">
+        Page 注册与管理
+      </a></span> <span class="next"><a href="/mp/get-started/conditional-render.html">
+        条件渲染
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.fe03ab5e.js" defer></script><script src="/assets/js/2.1f5ff3fb.js" defer></script><script src="/assets/js/30.db155db7.js" defer></script>
+  </body>
+</html>
